@@ -11,25 +11,28 @@ const gameController = {
     openCards: [],
 
     init: function() {
-        const deck = $('.deck');
+        const deck = document.querySelector('.deck');
+        const fragment = document.createDocumentFragment();
         let cards = [];
 
         symbols.forEach(function(symbol, index) {
-            const card = $(`<div>${symbol}</div>`);
-            card.data('pairId', index);
+            const card = document.createElement('div');
+            card.textContent = symbol;
+            card.dataset.pairId = index;
+
             cards.push(card);
-            cards.push(card.clone(true));
+            cards.push(card.cloneNode(true));
         });
 
         cards = shuffle(cards);
         cards.forEach(function(card) {
-             card.appendTo(deck);
+             fragment.appendChild(card);
         });
+        deck.appendChild(fragment);
     },
 };
 
 gameController.init();
-
 
 // from https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function shuffle(array) {
