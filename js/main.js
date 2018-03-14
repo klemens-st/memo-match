@@ -5,8 +5,8 @@ const gameController = {
     goal: 8,
     // Track successful matches.
     matched: 0,
-    // Array of card elements
-    deck: [],
+    // Array of matched card elements
+    matchedCards: [],
     // Array to track cards opened by the user
     openCards: [],
 
@@ -30,9 +30,67 @@ const gameController = {
         });
         deck.appendChild(fragment);
     },
+
+    openCard: function(card) {
+        // Do nothing if the card is already open
+        if (-1 !== this.openCards.indexOf(card)) return;
+
+        this.openCards.push(card);
+        card.classList.toggle('open');
+        this.evaluate();
+    },
+
+    evaluate: function() {
+        // Proceed only if there are 2 open cards
+        if (2 !== this.openCards.length) return;
+
+        const card1 = this.openCards[0];
+        const card2 = this.openCards[1];
+
+        // Check if open cards match
+        if (card1.dataset.pairId === card2.dataset.pairId) {
+            this.processMatch();
+        } else {
+            this.processMiss();
+        }
+        // Regardless of the result, flush openCards array
+        this.openCards = [];
+    },
+
+    processMatch: function() {
+        // Increment match counter
+        this.matched += 1;
+
+        this.openCards.forEach(function(card) {
+            card.classList.toggle('matched');
+        });
+
+        // Check if this was a winning move
+        if (this.matched === this.goal) this.victory();
+    },
+
+    processMiss: function() {
+        // Remove the open CSS class
+        this.openCards.forEach(function(card) {
+            card.classList.toggle('open');
+        });
+    },
+
+    victory: function() {
+        alert('Congrats!!!');
+    }
 };
 
 gameController.init();
+
+document.querySelectorAll('div').forEach(function(card) {
+    card.addEventListener('click', cardClicked);
+});
+
+function cardClicked(e) {
+    if (true === e.target.classList.contains('matched')) return;
+    gameController.openCard(e.target);
+}
 
 // from https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function shuffle(array) {
