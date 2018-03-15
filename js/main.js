@@ -28,6 +28,8 @@ const gameController = {
         cards.forEach(function(card) {
              fragment.appendChild(card);
         });
+
+        deck.innerHTML = '';
         deck.appendChild(fragment);
     },
 
@@ -130,6 +132,18 @@ function cardClicked(e) {
     if (true === e.target.classList.contains('matched')) return;
     gameController.openCard(e.target);
 }
+
+document.querySelector('.btn-start').addEventListener('click', function() {
+    timer.start();
+});
+
+document.querySelector('.btn-reset').addEventListener('click', function() {
+    gameController.init();
+    timer.stop();
+    timer.reset();
+    timer.start();
+});
+
 
 // from https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function shuffle(array) {
