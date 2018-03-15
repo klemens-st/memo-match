@@ -100,11 +100,6 @@ const timer = {
         return `${minutes}:${seconds}`;
     },
 
-    run: function() {
-        timer.current += 1;
-        timer.el.textContent = timer.parse();
-    },
-
     // Start the timer and run it
     start: function() {
         this.interval = setInterval(function() {
