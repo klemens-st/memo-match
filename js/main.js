@@ -9,6 +9,8 @@ const gameController = {
     matchedCards: [],
     // Array to track cards opened by the user
     openCards: [],
+    // Move counter element
+    counter: document.querySelector('.counter'),
 
     init: function() {
         const deck = document.querySelector('.deck');
@@ -32,6 +34,9 @@ const gameController = {
         deck.innerHTML = '';
         deck.appendChild(fragment);
         bindCardEvents();
+
+        // Set the move counter
+        this.resetCounter();
     },
 
     openCard: function(card) {
@@ -46,6 +51,10 @@ const gameController = {
     evaluate: function() {
         // Proceed only if there are 2 open cards
         if (2 !== this.openCards.length) return;
+
+        // Increment move counter
+        this.moves += 1;
+        this.counter.textContent = this.moves;
 
         const card1 = this.openCards[0];
         const card2 = this.openCards[1];
@@ -81,6 +90,11 @@ const gameController = {
 
     victory: function() {
         alert('Congrats!!!');
+    },
+
+    resetCounter: function() {
+        this.moves = 0;
+        this.counter.textContent = '0';
     }
 };
 
