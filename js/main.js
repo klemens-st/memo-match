@@ -31,6 +31,7 @@ const gameController = {
 
         deck.innerHTML = '';
         deck.appendChild(fragment);
+        bindCardEvents();
     },
 
     openCard: function(card) {
@@ -124,9 +125,11 @@ const timer = {
 
 gameController.init();
 
-document.querySelectorAll('div').forEach(function(card) {
-    card.addEventListener('click', cardClicked);
-});
+function bindCardEvents() {
+    document.querySelectorAll('div').forEach(function(card) {
+        card.addEventListener('click', cardClicked);
+    });
+}
 
 function cardClicked(e) {
     if (true === e.target.classList.contains('matched')) return;
@@ -139,6 +142,7 @@ document.querySelector('.btn-start').addEventListener('click', function() {
 
 document.querySelector('.btn-reset').addEventListener('click', function() {
     gameController.init();
+    bindCardEvents();
     timer.stop();
     timer.reset();
     timer.start();
