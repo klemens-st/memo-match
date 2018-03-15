@@ -13,6 +13,7 @@
   <header>
     <h1>Memory matching game</header>
   </header>
+
   <main>
     <section class="status">
       <button type="button" class="btn-start">Start</button>
@@ -23,9 +24,24 @@
     </section>
     <section class="deck">
     </section>
+    <section class="leaderboard">
+      <h2>Leaderboard</h2>
+      <ol class="scores"></ol>
+    </section>
   </main>
+
   <footer>
   </footer>
+
+  <div class="modal">
+    <h2>Congratulations!!!</h2>
+    <form>
+      <label>Type your name to save your score
+        <input type="text" name="name">
+      </label>
+      <button type="submit">Save</button>
+    </form>
+  </div>
   <script src="js/main.js"></script>
 </body>
 

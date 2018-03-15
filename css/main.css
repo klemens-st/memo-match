@@ -1,0 +1,20 @@
+.modal {
+  display: none;
+  position: fixed;
+  left: 25%;
+  top: 25%;
+  width: 50%;
+  height:50%;
+}
+
+.show {
+  display: block;
+}
+
+.disabled {
+  display: none;
+}
+
+.hidden {
+  visibility: hidden;
+}

@@ -87,6 +87,7 @@ const gameController = {
 
     victory: function() {
         alert('Congrats!!!');
+        document.querySelector('.modal').classList.toggle('show');
     }
 };
 
@@ -182,10 +183,94 @@ const timer = {
     }
 };
 
+const leaderBoard = {
+    // List element
+    list: document.querySelector('.scores'),
+    // Form used to save high scores
+    form: document.querySelector('.modal form'),
+
+    init: function() {
+        if (storageAvailable('localStorage')) {
+            // Get values from the storage or set a new array
+            const storage = localStorage.getItem('leaderBoard');
+            this.scores = (null !== storage) ? JSON.parse(storage) : [];
+            // Render the list
+            if ([] !== this.scores) this.render();
+            // Set an event listener on the form
+            this.setEvents();
+
+        } else {
+            // Hide entire leaderboard if we cannot use local storage
+            document.querySelector('.leaderBoard').classList.toggle('disabled');
+        }
+    },
+
+    setEvents: function() {
+        this.form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.querySelector('input').value;
+                leaderBoard.insert(name);
+            });
+    },
+
+    insert: function(name) {
+        const time = new Date().toLocaleString();
+        const score = scoreController.moves;
+        const newEntry = {name, time, score};
+
+        if (0 === this.scores.length) {
+            this.scores.push(newEntry);
+        } else {
+            // Loop over the array and insert the new entry as
+            // soon as an equal or higher score is found. This ensures
+            // uniformity of the leaderboard. If we are trying to insert
+            // a score higher than any other one, push it to the end
+            let inserted = false;
+            for (const entry of this.scores) {
+                if (entry.score >= newEntry.score) {
+                    const position = this.scores.indexOf(entry);
+                    this.scores.splice(position, 0, newEntry);
+                    inserted = true;
+                    break;
+                }
+            }
+            if (!inserted) this.scores.push(newEntry);
+            // Save changes to local storage
+            localStorage.setItem('leaderBoard', JSON.stringify(this.scores));
+        }
+        // Finally, render the new list
+        this.render();
+    },
+
+    render: function() {
+        const fragment = document.createDocumentFragment();
+
+        this.scores.forEach(function(entry) {
+            const {name, time, score} = entry;
+            const newLi = document.createElement('li');
+            newLi.textContent = `${name}, score: ${score}, ${time}`;
+            fragment.appendChild(newLi);
+        });
+        this.list.classList.toggle('hidden');
+        this.list.innerHTML = '';
+        this.list.appendChild(fragment);
+        this.list.classList.toggle('hidden');
+    },
+
+    clear: function() {
+        this.scores = [];
+        // Clear local storage
+        localStorage.removeItem('leaderBoard');
+        // Clear rendered list
+        this.list.innerHTML = '';
+    }
+}
+
 gameController.init();
+leaderBoard.init();
 
 function bindCardEvents() {
-    document.querySelectorAll('div').forEach(function(card) {
+    document.querySelectorAll('.deck div').forEach(function(card) {
         card.addEventListener('click', cardClicked);
     });
 }
@@ -227,3 +312,30 @@ function shuffle(array) {
 
   return array;
 }
+
+
+// from https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
+function storageAvailable(type) {
+    try {
+        var storage = window[type],
+            x = '__storage_test__';
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+    }
+    catch(e) {
+        return e instanceof DOMException && (
+            // everything except Firefox
+            e.code === 22 ||
+            // Firefox
+            e.code === 1014 ||
+            // test name field too, because code might not be present
+            // everything except Firefox
+            e.name === 'QuotaExceededError' ||
+            // Firefox
+            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+            // acknowledge QuotaExceededError only if there's something already stored
+            storage.length !== 0;
+    }
+}
+// TODO: Disable leaderboard submission when no local storage
