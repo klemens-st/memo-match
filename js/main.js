@@ -78,9 +78,14 @@ const gameController = {
     },
 
     processMiss: function() {
-        // Remove the open CSS class
         this.openCards.forEach(function(card) {
-            card.classList.toggle('open');
+            // Wait for the 'open' animation to finish and add 'wrong' class
+            setTimeout(() => {card.classList.toggle('wrong');}, 1000);
+            // Wait for the 'wrong' animation to finish and remove both classes.
+            setTimeout(() => {
+                card.classList.toggle('open');
+                card.classList.toggle('wrong');
+            }, 2000);
         });
     },
 
