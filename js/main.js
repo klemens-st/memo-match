@@ -31,7 +31,6 @@ const gameController = {
 
         deck.innerHTML = '';
         deck.appendChild(fragment);
-        bindCardEvents();
 
         // Set the move counter
         scoreController.resetScore();
@@ -281,6 +280,7 @@ function cardClicked(e) {
 }
 
 document.querySelector('.btn-start').addEventListener('click', function() {
+    bindCardEvents();
     timer.start();
 });
 
