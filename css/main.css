@@ -6,6 +6,10 @@
   max-height: 500px;
   width: 80vw;
   height: 80vw;
+  padding: 10px;
+  border-radius: 10px;
+  background: linear-gradient(to bottom right, #795548, #03A9F4);
+  box-sizing: border-box;
   margin: auto;
   display: grid;
   grid: repeat(4, 1fr) / repeat(4, 1fr);
