@@ -16,11 +16,20 @@ button:hover {
 button:active {
   background-color: green;
 }
+
 /* Header */
 
 header {
   margin: 0 0 20px 0;
   text-align: center;
+}
+
+.btn-start {
+  transition: filter 2s;
+}
+
+.started {
+  filter: opacity(0%);
 }
 
 /* Status bar */

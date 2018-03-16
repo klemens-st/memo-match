@@ -289,6 +289,8 @@ function cardClicked(e) {
 document.querySelector('.btn-start').addEventListener('click', function() {
     bindCardEvents();
     timer.start();
+    this.classList.toggle('started');
+    this.setAttribute('disabled', '');
 });
 
 document.querySelector('.btn-reset').addEventListener('click', function() {
