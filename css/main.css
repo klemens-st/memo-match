@@ -44,12 +44,23 @@
 }
 
 /* Modal styles */
+.modal,
+.overlay {
+  position: fixed;
+}
+
+.overlay {
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #9e9e9e82;
+}
 
 .modal {
   background-color: white;
   text-align: center;
-  display: none;
-  position: fixed;
   left: calc((100vw - 300px) / 2);
   top: 25%;
   width: 50%;

@@ -87,7 +87,7 @@ const gameController = {
 
     victory: function() {
         alert('Congrats!!!');
-        document.querySelector('.modal').classList.toggle('show');
+        document.querySelector('.overlay').classList.toggle('show');
     }
 };
 
