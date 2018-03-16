@@ -8,6 +8,7 @@
   height: 80vw;
   padding: 10px;
   border-radius: 10px;
+  box-shadow: 5px 5px 12px 0px #9e9e9e;
   background: linear-gradient(to bottom right, #795548, #03A9F4);
   box-sizing: border-box;
   margin: auto;
