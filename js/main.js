@@ -70,7 +70,9 @@ const gameController = {
         this.matched += 1;
 
         this.openCards.forEach(function(card) {
-            card.classList.toggle('matched');
+            // Wait for the open animation to finish before
+            // adding the 'matched' class.
+            setTimeout(() => {card.classList.toggle('matched');}, 1000);
         });
 
         // Check if this was a winning move
