@@ -276,8 +276,8 @@ function bindCardEvents() {
 }
 
 function cardClicked(e) {
-    if (true === e.target.classList.contains('matched')) return;
-    gameController.openCard(e.target);
+    if (true === e.currentTarget.classList.contains('matched')) return;
+    gameController.openCard(e.currentTarget);
 }
 
 document.querySelector('.btn-start').addEventListener('click', function() {
