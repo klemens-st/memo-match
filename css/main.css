@@ -20,6 +20,14 @@
   border-radius: 10px;
 }
 
+.deck div:hover {
+  box-shadow: inset 0 0 20px 1px #4CAF50;
+}
+
+.deck div:active {
+  background-color: #ffff82;
+}
+
 .deck span {
   position: relative;
   /* Little trick to vertically align the symbol */
