@@ -1,3 +1,30 @@
+/* Status bar */
+.status {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100vw;
+  height: 50px;
+}
+
+.status * {
+  width: 25%;
+  box-sizing: border-box;
+  padding: 15px 0;
+  margin: 0;
+}
+
+.btn-reset {
+  text-align: center;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 321px) {
+  .status {
+    width: 300px;
+    margin: auto;
+  }
+}
+
 /* Deck */
 .deck {
   min-width: 300px;
