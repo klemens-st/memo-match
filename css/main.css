@@ -43,13 +43,24 @@
   background-color: green;
 }
 
+/* Modal styles */
+
 .modal {
+  background-color: white;
+  text-align: center;
   display: none;
   position: fixed;
-  left: 25%;
+  left: calc((100vw - 300px) / 2);
   top: 25%;
   width: 50%;
   height:50%;
+  min-width: 300px;
+  box-shadow: 0px 0px 20px 3px black;
+  border-radius: 20px;
+}
+
+@media screen and (min-width: 600px) {
+  .modal {left: 25%;}
 }
 
 .show {
@@ -63,3 +74,5 @@
 .hidden {
   visibility: hidden;
 }
+
+/* TODO: optimise styles */
