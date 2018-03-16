@@ -20,7 +20,7 @@
 }
 
 .deck div {
-  background-color: yellow;
+  background-color: #fc8307;
   text-align: center;
   border-radius: 10px;
   transition: box-shadow 0.3s;
@@ -35,13 +35,18 @@
 }
 
 .deck span {
+  visibility: hidden;
   position: relative;
   /* Little trick to vertically align the symbol */
   top: calc(50% - 0.5em);
 }
 
 .deck .open {
-  background-color: red;
+  background-color: blue;
+}
+
+.open span {
+  visibility: visible;
 }
 
 .deck .matched {
