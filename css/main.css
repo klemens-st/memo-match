@@ -1,3 +1,28 @@
+button {
+  background-color: #5cc3ff;
+  border: none;
+  border-radius: 4px;
+  height: 48px;
+  width: 70px;
+  box-shadow: 2px 2px 8px 0px black;
+  outline: none;
+  color: white;
+}
+
+button:hover {
+  background-color: blue;
+}
+
+button:active {
+  background-color: green;
+}
+/* Header */
+
+header {
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+
 /* Status bar */
 .status {
   display: flex;
