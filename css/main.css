@@ -18,6 +18,7 @@
   background-color: yellow;
   text-align: center;
   border-radius: 10px;
+  transition: box-shadow 0.3s;
 }
 
 .deck div:hover {
