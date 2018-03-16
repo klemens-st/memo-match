@@ -17,7 +17,7 @@ const gameController = {
 
         symbols.forEach(function(symbol, index) {
             const card = document.createElement('div');
-            card.textContent = symbol;
+            card.innerHTML = `<span>${symbol}</span>`;
             card.dataset.pairId = index;
 
             cards.push(card);

@@ -1,3 +1,39 @@
+/* Deck */
+.deck {
+  min-width: 300px;
+  min-height: 300px;
+  max-width: 500px;
+  max-height: 500px;
+  width: 80vw;
+  height: 80vw;
+  margin: auto;
+  display: grid;
+  grid: repeat(4, 1fr) / repeat(4, 1fr);
+  grid-gap: 10px;
+  justify-items: stretch;
+  align-items: stretch;
+}
+
+.deck div {
+  background-color: yellow;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.deck span {
+  position: relative;
+  /* Little trick to vertically align the symbol */
+  top: calc(50% - 0.5em);
+}
+
+.deck .open {
+  background-color: red;
+}
+
+.deck .matched {
+  background-color: green;
+}
+
 .modal {
   display: none;
   position: fixed;
