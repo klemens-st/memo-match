@@ -308,6 +308,7 @@ const modal = {
         // Set a close event on play again button
         this.el.querySelector('.again').addEventListener('click', () => {
             modal.close();
+            gameController.reset();
         });
     },
 
