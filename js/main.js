@@ -118,7 +118,8 @@ const gameController = {
     victory: function() {
         // Show modal and stop the timer
         timer.stop();
-        modal.open();
+        // Wait for animations to finish
+        setTimeout(() => {modal.open();}, 1000);
     }
 };
 
@@ -430,4 +431,3 @@ function storageAvailable(type) {
             storage.length !== 0;
     }
 }
-// TODO: Disable leaderboard submission when no local storage
