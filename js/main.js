@@ -294,9 +294,11 @@ const modal = {
     render: function() {
         const moves = this.el.querySelector('.moves');
         const stars = this.el.querySelector('.stars');
+        const timeElapsed = this.el.querySelector('.timer');
 
         moves.textContent = scoreController.moves;
         stars.textContent = scoreController.rating;
+        timeElapsed.textContent = timer.parse();
     }
 }
 
