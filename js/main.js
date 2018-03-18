@@ -135,7 +135,7 @@ const scoreController = {
         // Player's current star rating
         this.rating = 3;
         // Star rating move count break points, from lowest to highest
-        this.breakPoints = [4, 24, 30];
+        this.breakPoints = [20, 24, 30];
         this.counter.textContent = '0';
         this.renderStars();
     },
