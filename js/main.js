@@ -11,6 +11,32 @@ const gameController = {
     openCards: [],
 
     init: function() {
+        // Create the deck
+        this.deckSetup();
+        // Set the move counter
+        scoreController.resetScore();
+        // Initialize the leaderboard
+        leaderBoard.init();
+        // Initialize the modal
+        modal.init();
+    },
+
+    start: function() {
+        bindCardEvents();
+        bindResetEvent();
+        timer.start();
+    },
+
+    reset: function() {
+        this.deckSetup();
+        scoreController.resetScore();
+        bindCardEvents();
+        timer.stop();
+        timer.reset();
+        timer.start();
+    },
+
+    deckSetup: function() {
         const deck = document.querySelector('.deck');
         const fragment = document.createDocumentFragment();
         let cards = [];
@@ -31,13 +57,6 @@ const gameController = {
 
         deck.innerHTML = '';
         deck.appendChild(fragment);
-
-        // Set the move counter
-        scoreController.resetScore();
-        // Initialize the leaderboard
-        leaderBoard.init();
-        // Initialize the modal
-        modal.init();
     },
 
     openCard: function(card) {
@@ -327,21 +346,14 @@ function cardClicked(e) {
 }
 
 document.querySelector('.btn-start').addEventListener('click', function() {
-    bindCardEvents();
-    bindResetEvent();
-    timer.start();
+    gameController.start();
     this.classList.toggle('started');
     this.setAttribute('disabled', '');
 });
 
 function bindResetEvent() {
     document.querySelector('.btn-reset').addEventListener('click', function() {
-        gameController.init();
-        // TODO: when called by start button, binds cards events twice
-        bindCardEvents();
-        timer.stop();
-        timer.reset();
-        timer.start();
+        gameController.reset();
     });
 }
 
