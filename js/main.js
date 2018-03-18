@@ -218,20 +218,28 @@ const leaderBoard = {
     list: document.querySelector('.scores'),
     // Form used to save high scores
     form: document.querySelector('.modal form'),
+    // Other objects will check this property before
+    // interacting with the leaderboard
+    available: false,
 
     init: function() {
         if (storageAvailable('localStorage')) {
+            // Update availability
+            this.available = true;
             // Get values from the storage or set a new array
             const storage = localStorage.getItem('leaderBoard');
             this.scores = (null !== storage) ? JSON.parse(storage) : [];
             // Render the list
             if ([] !== this.scores) this.render();
+            // Show the form
+            this.form.classList.toggle('disabled');
             // Set an event listener on the form
             this.setEvents();
 
         } else {
             // Hide entire leaderboard if we cannot use local storage
-            document.querySelector('.leaderBoard').classList.toggle('disabled');
+            document.querySelector('.leaderboard').classList.toggle('disabled');
+            this.form.classList.toggle('disabled');
         }
     },
 
@@ -319,8 +327,10 @@ const modal = {
 
     close: function() {
         this.overlay.classList.toggle('show');
-        // Make sure leaderboard form is enabled
-        leaderBoard.form.classList.remove('disabled');
+        // Make sure leaderboard form is enabled (if available)
+        if (leaderBoard.available){
+            leaderBoard.form.classList.remove('disabled');
+        }
     },
 
     render: function() {
