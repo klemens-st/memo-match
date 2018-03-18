@@ -115,7 +115,8 @@ const gameController = {
     },
 
     victory: function() {
-        // Show modal
+        // Show modal and stop the timer
+        timer.stop();
         modal.open();
     }
 };
