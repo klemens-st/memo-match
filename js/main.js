@@ -5,8 +5,8 @@ const gameController = {
     goal: 8,
     // Track successful matches.
     matched: 0,
-    // Array of matched card elements
-    matchedCards: [],
+    // Deck element
+    deck: document.querySelector('.deck'),
     // Array to track cards opened by the user
     openCards: [],
 
@@ -24,6 +24,8 @@ const gameController = {
     start: function() {
         bindCardEvents();
         bindResetEvent();
+        // Animate cards from scale 0 to full
+        this.deck.classList.toggle('reveal');
         timer.start();
     },
 
@@ -37,7 +39,6 @@ const gameController = {
     },
 
     deckSetup: function() {
-        const deck = document.querySelector('.deck');
         const fragment = document.createDocumentFragment();
         let cards = [];
 
@@ -55,8 +56,8 @@ const gameController = {
              fragment.appendChild(card);
         });
 
-        deck.innerHTML = '';
-        deck.appendChild(fragment);
+        this.deck.innerHTML = '';
+        this.deck.appendChild(fragment);
     },
 
     openCard: function(card) {
