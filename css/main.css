@@ -60,6 +60,7 @@ header {
 }
 
 /* Deck */
+
 .deck {
   min-width: 300px;
   min-height: 300px;
@@ -97,9 +98,13 @@ header {
 }
 
 .deck span {
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
   visibility: hidden;
   position: relative;
   /* Little trick to vertically align the symbol */
+  line-height: 1em;
   top: calc(50% - 0.5em);
   transition: visibility 0.5s step-end;
 }
