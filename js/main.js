@@ -34,6 +34,8 @@ const gameController = {
 
         // Set the move counter
         scoreController.resetScore();
+        // Initialize the leaderboard
+        leaderBoard.init();
     },
 
     openCard: function(card) {
@@ -303,7 +305,6 @@ const modal = {
 }
 
 gameController.init();
-leaderBoard.init();
 
 function bindCardEvents() {
     document.querySelectorAll('.deck div').forEach(function(card) {
