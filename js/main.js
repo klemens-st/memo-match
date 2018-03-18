@@ -92,7 +92,7 @@ const gameController = {
     },
 
     victory: function() {
-        alert('Congrats!!!');
+        // Show modal
         document.querySelector('.overlay').classList.toggle('show');
     }
 };
@@ -216,6 +216,8 @@ const leaderBoard = {
                 e.preventDefault();
                 const name = document.querySelector('input').value;
                 leaderBoard.insert(name);
+                // Hide the form to allow only one submission.
+                leaderBoard.form.classList.toggle('disabled');
             });
     },
 
@@ -297,7 +299,10 @@ document.querySelector('.btn-start').addEventListener('click', function() {
 function bindResetEvent() {
     document.querySelector('.btn-reset').addEventListener('click', function() {
         gameController.init();
+        // TODO: when called by start button, binds cards events twice
         bindCardEvents();
+        // Make sure leaderboard form is enabled
+        leaderBoard.form.classList.remove('disabled');
         timer.stop();
         timer.reset();
         timer.start();
