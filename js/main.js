@@ -233,8 +233,6 @@ const leaderBoard = {
             this.scores = (null !== storage) ? JSON.parse(storage) : [];
             // Render the list
             this.render();
-            // Show the form
-            this.form.classList.toggle('disabled');
             // Set an event listener on the form
             this.setEvents();
 
