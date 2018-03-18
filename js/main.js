@@ -329,6 +329,7 @@ const modal = {
     open: function() {
         this.render();
         this.overlay.classList.toggle('show');
+        this.toggleBlur();
     },
 
     close: function() {
@@ -337,6 +338,7 @@ const modal = {
         if (leaderBoard.available){
             leaderBoard.form.classList.remove('disabled');
         }
+        this.toggleBlur();
     },
 
     render: function() {
@@ -347,6 +349,12 @@ const modal = {
         moves.textContent = scoreController.moves;
         stars.textContent = scoreController.rating;
         timeElapsed.textContent = timer.parse();
+    },
+
+    toggleBlur: function() {
+        document.querySelectorAll('body > *:not(.overlay)').forEach(function(el) {
+            el.classList.toggle('blur');
+        });
     }
 }
 

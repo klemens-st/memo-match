@@ -195,4 +195,8 @@ header {
   visibility: hidden;
 }
 
+.blur {
+  filter: blur(5px);
+}
+
 /* TODO: optimise styles */
