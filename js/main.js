@@ -214,6 +214,8 @@ const timer = {
 };
 
 const leaderBoard = {
+    // Leaderboard element
+    el: document.querySelector('.leaderboard'),
     // List element
     list: document.querySelector('.scores'),
     // Form used to save high scores
@@ -230,7 +232,7 @@ const leaderBoard = {
             const storage = localStorage.getItem('leaderBoard');
             this.scores = (null !== storage) ? JSON.parse(storage) : [];
             // Render the list
-            if ([] !== this.scores) this.render();
+            this.render();
             // Show the form
             this.form.classList.toggle('disabled');
             // Set an event listener on the form
@@ -283,6 +285,12 @@ const leaderBoard = {
     },
 
     render: function() {
+        // Fallback if there are no entries
+        if (0 === this.scores.length) {
+            this.el.insertAdjacentHTML('beforeend', '<p>No entries yet</p>');
+            return;
+        }
+
         const fragment = document.createDocumentFragment();
 
         this.scores.forEach(function(entry) {
