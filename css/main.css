@@ -167,6 +167,7 @@ header {
 }
 
 .modal {
+  padding: 0 10px;
   background-color: white;
   text-align: center;
   left: calc((100vw - 300px) / 2);
