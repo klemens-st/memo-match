@@ -10,7 +10,7 @@ button {
   border: none;
   border-radius: 4px;
   height: 48px;
-  width: 70px;
+  min-width: 70px;
   box-shadow: 2px 2px 8px 0px black;
   outline: none;
   color: white;
@@ -154,6 +154,12 @@ header {
 }
 
 /* Modal styles */
+
+label {
+  display: block;
+  margin: 10px 0;
+}
+
 .modal,
 .overlay {
   position: fixed;
@@ -173,16 +179,27 @@ header {
   background-color: white;
   text-align: center;
   left: calc((100vw - 300px) / 2);
-  top: 25%;
-  width: 50%;
-  height:50%;
+  top: 15vh;
+  width: 50vw;
   min-width: 300px;
   box-shadow: 0px 0px 20px 3px black;
   border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.save-score {
+  margin: 10px 0;
 }
 
 @media screen and (min-width: 600px) {
   .modal {left: 25%;}
+}
+
+@media screen and (min-width: 971px) {
+  .modal {
+    width: 485px;
+    left: calc((100vw - 485px) / 2);
+  }
 }
 
 .show {
