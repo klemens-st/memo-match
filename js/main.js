@@ -36,6 +36,8 @@ const gameController = {
         scoreController.resetScore();
         // Initialize the leaderboard
         leaderBoard.init();
+        // Initialize the modal
+        modal.init();
     },
 
     openCard: function(card) {
@@ -281,6 +283,13 @@ const modal = {
     el: document.querySelector('.modal'),
     // Overlay containing the modal
     overlay: document.querySelector('.overlay'),
+
+    init: function() {
+        // Set a close event on play again button
+        this.el.querySelector('.again').addEventListener('click', () => {
+            modal.close();
+        });
+    },
 
     open: function() {
         this.render();
