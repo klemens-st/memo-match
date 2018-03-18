@@ -93,7 +93,7 @@ const gameController = {
 
     victory: function() {
         // Show modal
-        document.querySelector('.overlay').classList.toggle('show');
+        modal.open();
     }
 };
 
@@ -216,8 +216,6 @@ const leaderBoard = {
                 e.preventDefault();
                 const name = document.querySelector('input').value;
                 leaderBoard.insert(name);
-                // Hide the form to allow only one submission.
-                leaderBoard.form.classList.toggle('disabled');
             });
     },
 
@@ -245,6 +243,8 @@ const leaderBoard = {
             if (!inserted) this.scores.push(newEntry);
             // Save changes to local storage
             localStorage.setItem('leaderBoard', JSON.stringify(this.scores));
+            // Hide the form to allow only one submission.
+            this.form.classList.toggle('disabled');
         }
         // Finally, render the new list
         this.render();
@@ -271,6 +271,32 @@ const leaderBoard = {
         localStorage.removeItem('leaderBoard');
         // Clear rendered list
         this.list.innerHTML = '';
+    }
+}
+
+const modal = {
+    // Modal element
+    el: document.querySelector('.modal'),
+    // Overlay containing the modal
+    overlay: document.querySelector('.overlay'),
+
+    open: function() {
+        this.render();
+        this.overlay.classList.toggle('show');
+    },
+
+    close: function() {
+        this.overlay.classList.toggle('show');
+        // Make sure leaderboard form is enabled
+        leaderBoard.form.classList.remove('disabled');
+    },
+
+    render: function() {
+        const moves = this.el.querySelector('.moves');
+        const stars = this.el.querySelector('.stars');
+
+        moves.textContent = scoreController.moves;
+        stars.textContent = scoreController.rating;
     }
 }
 
@@ -301,8 +327,6 @@ function bindResetEvent() {
         gameController.init();
         // TODO: when called by start button, binds cards events twice
         bindCardEvents();
-        // Make sure leaderboard form is enabled
-        leaderBoard.form.classList.remove('disabled');
         timer.stop();
         timer.reset();
         timer.start();
