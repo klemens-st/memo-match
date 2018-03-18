@@ -204,4 +204,39 @@ header {
   filter: blur(5px);
 }
 
+/* Leaderboard */
+
+td,
+th {
+  padding: 5px;
+  text-align: left;
+}
+
+th {
+  color: white;
+  background-color: #4bbaff;
+}
+
+tr:nth-of-type(odd) {
+  background-color: #ddf2ff;
+}
+
+.leaderboard {
+  width: 100%;
+}
+
+.leaderboard > h2 {
+  margin-left: 5px;
+}
+
+.scores {
+  width: 100%;
+  font-size: 0.8em;
+  border-collapse: collapse;
+}
+
+@media screen and (min-width: 426px) {
+  .scores {font-size: 1em;}
+}
+
 /* TODO: optimise styles */

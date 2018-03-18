@@ -219,7 +219,7 @@ const leaderBoard = {
     // Leaderboard element
     el: document.querySelector('.leaderboard'),
     // List element
-    list: document.querySelector('.scores'),
+    list: document.querySelector('.scores > tbody'),
     // Form used to save high scores
     form: document.querySelector('.modal form'),
     // Other objects will check this property before
@@ -293,11 +293,13 @@ const leaderBoard = {
 
         const fragment = document.createDocumentFragment();
 
+        let i = 1;
         this.scores.forEach(function(entry) {
             const {name, time, score} = entry;
-            const newLi = document.createElement('li');
-            newLi.textContent = `${name}, score: ${score}, ${time}`;
-            fragment.appendChild(newLi);
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${i}.</td><td>${name}</td><td>${score}</td><td>${time}</td>`;
+            fragment.appendChild(row);
+            i++;
         });
         this.list.classList.toggle('hidden');
         this.list.innerHTML = '';
