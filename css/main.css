@@ -79,7 +79,7 @@ header {
   box-shadow: 5px 5px 12px 0px #9e9e9e;
   background: linear-gradient(to bottom right, #795548, #03A9F4);
   box-sizing: border-box;
-  margin: auto;
+  margin: auto auto 20px auto;
   display: grid;
   grid: repeat(4, 1fr) / repeat(4, 1fr);
   grid-gap: 10px;
