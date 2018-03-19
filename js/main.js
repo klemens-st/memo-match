@@ -134,7 +134,7 @@ const scoreController = {
     // Star symbols
     starSymbols: {filled: '★', empty: '☆'},
 
-    resetScore: function() {
+    resetScore() {
         // Move count
         this.moves = 0;
         // Player's current star rating
@@ -145,13 +145,13 @@ const scoreController = {
         this.renderStars();
     },
 
-    incrementCounter: function() {
+    incrementCounter() {
         this.moves += 1;
         this.counter.textContent = this.moves;
         this.assignStars();
     },
 
-    assignStars: function() {
+    assignStars() {
         // Check if the there are more moves than the lowest
         // remaining break point
         if (this.moves > this.breakPoints[0]) {
@@ -162,7 +162,7 @@ const scoreController = {
         }
     },
 
-    renderStars: function() {
+    renderStars() {
         const filled = this.starSymbols.filled;
         const empty = this.starSymbols.empty;
 
