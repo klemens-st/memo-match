@@ -30,6 +30,8 @@ const gameController = {
     },
 
     reset: function() {
+        // Set match counter back to 0
+        this.matched = 0
         this.deckSetup();
         scoreController.resetScore();
         bindCardEvents();
