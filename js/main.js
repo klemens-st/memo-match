@@ -98,7 +98,7 @@ const gameController = {
         this.openCards.forEach(function(card) {
             // Wait for the open animation to finish before
             // adding the 'matched' class.
-            setTimeout(() => {card.classList.toggle('matched');}, 1000);
+            setTimeout(() => {card.classList.toggle('matched');}, 500);
         });
 
         // Check if this was a winning move
@@ -108,12 +108,12 @@ const gameController = {
     processMiss: function() {
         this.openCards.forEach(function(card) {
             // Wait for the 'open' animation to finish and add 'wrong' class
-            setTimeout(() => {card.classList.toggle('wrong');}, 1000);
+            setTimeout(() => {card.classList.toggle('wrong');}, 500);
             // Wait for the 'wrong' animation to finish and remove both classes.
             setTimeout(() => {
                 card.classList.toggle('open');
                 card.classList.toggle('wrong');
-            }, 2000);
+            }, 1000);
         });
     },
 
@@ -121,7 +121,7 @@ const gameController = {
         // Show modal and stop the timer
         timer.stop();
         // Wait for animations to finish
-        setTimeout(() => {modal.open();}, 2000);
+        setTimeout(() => {modal.open();}, 1000);
     }
 };
 

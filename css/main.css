@@ -94,7 +94,7 @@ header {
   border-radius: 10px;
   /* Cards are invisible until start button is clicked */
   transform: rotateY(180deg) scale(0,0);
-  transition: box-shadow 0.3s, background-color 0.5s step-end, transform 1s linear;
+  transition: box-shadow 0.3s, background-color 0.25s step-end, transform 0.5s linear;
 }
 
 .deck div:hover {
@@ -110,7 +110,7 @@ header {
   /* Little trick to vertically align the symbol */
   line-height: 1em;
   top: calc(50% - 0.5em);
-  transition: visibility 0.5s step-end;
+  transition: visibility 0.25s step-end;
 }
 
 .deck .open {
