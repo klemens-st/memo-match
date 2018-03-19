@@ -186,7 +186,7 @@ const timer = {
     el: document.querySelector('.timer'),
 
     // Parse raw time and return display string
-    parse: function() {
+    parse() {
         let minutes = Math.floor(this.current / 60);
         let seconds = this.current % 60;
 
@@ -199,20 +199,21 @@ const timer = {
     },
 
     // Start the timer and run it
-    start: function() {
-        this.interval = setInterval(function() {
-            timer.current += 1;
-            timer.el.textContent = timer.parse();
+    start() {
+        this.interval = setInterval(() => {
+            // Arrow function allows using 'this' here
+            this.current += 1;
+            this.el.textContent = timer.parse();
         }, 1000);
     },
 
     // Stop the timer
-    stop: function() {
+    stop() {
         clearInterval(this.interval);
     },
 
     // Set the timer back to zero
-    reset: function() {
+    reset() {
         this.current = 0;
         this.el.textContent = this.parse();
     }
