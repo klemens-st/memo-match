@@ -1,3 +1,4 @@
+/* Global init code */
 gameController.init();
 
 document.querySelector('.btn-start').addEventListener('click', function() {

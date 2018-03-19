@@ -1,3 +1,4 @@
+/* Object controlling the leaderboard and form submissions */
 const leaderBoard = {
     // Leaderboard element
     el: document.querySelector('.leaderboard'),

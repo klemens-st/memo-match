@@ -1,3 +1,6 @@
+/* Main controller object, handles the deck
+ * and contains hooks to other relevant objects
+ */
 const gameController = {
     // Set the number of matches required to win.
     goal: 8,

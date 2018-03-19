@@ -1,3 +1,4 @@
+/* Game timer handler object */
 const timer = {
     // Current timer count in seconds
     current: 0,

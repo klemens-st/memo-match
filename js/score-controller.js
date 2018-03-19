@@ -1,3 +1,4 @@
+/* Object handling move count and star rating */
 const scoreController = {
     // Move counter element
     counter: document.querySelector('.counter'),

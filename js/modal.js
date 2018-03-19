@@ -1,3 +1,4 @@
+/* Victory modal controller object */
 const modal = {
     // Modal element
     el: document.querySelector('.modal'),
