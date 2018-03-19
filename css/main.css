@@ -253,6 +253,10 @@ tr:nth-of-type(odd) {
   border-collapse: collapse;
 }
 
+.clear-scores {
+  margin: 10px;
+}
+
 @media screen and (min-width: 426px) {
   .scores {font-size: 1em;}
 }

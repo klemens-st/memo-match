@@ -20,7 +20,7 @@ const leaderBoard = {
             this.scores = (null !== storage) ? JSON.parse(storage) : [];
             // Render the list
             this.render();
-            // Set an event listener on the form
+            // Set an event listener on the form and clear button
             this.setEvents();
 
         } else {
@@ -36,6 +36,13 @@ const leaderBoard = {
                 const name = document.querySelector('input').value;
                 leaderBoard.insert(name);
             });
+        // Click and hold clear event
+        const clearBtn = document.querySelector('.clear-scores > button');
+        clearBtn.addEventListener('pointerdown', () => {
+            leaderBoard.timeout = setTimeout(() => {leaderBoard.clear();}, 5000);
+        });
+        clearBtn.addEventListener('pointerup', () => {clearInterval(leaderBoard.timeout);});
+
     },
 
     insert(name) {
@@ -91,12 +98,14 @@ const leaderBoard = {
         this.list.classList.toggle('hidden');
     },
 
-    // Controls the display of 'no scores' message
+    // Controls the display of 'no scores' message and clear button
     toggleNoScores() {
         if (0 === this.scores.length && !this.noScores ||
             0 < this.scores.length && this.noScores) {
             this.noScores = !this.el.querySelector('.no-scores')
                             .classList.toggle('disabled');
+            document.querySelector('.clear-scores').classList
+                .toggle('disabled');
         }
     },
 
