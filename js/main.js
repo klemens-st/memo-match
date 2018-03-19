@@ -11,6 +11,8 @@ const gameController = {
     init() {
         // Create the deck
         this.deckSetup();
+        // Delegate events
+        this.setEvents();
         // Set the move counter
         scoreController.resetScore();
         // Initialize the leaderboard
@@ -19,9 +21,24 @@ const gameController = {
         modal.init();
     },
 
+    setEvents() {
+        // Delegate events from deck to cards
+        this.deck.addEventListener('click', e => {
+            if (e.target.nodeName === 'DIV' &&
+                    false === e.target.classList.contains('matched')) {
+                gameController.openCard(e.target);
+            }
+        });
+        // Set a reset event
+        document.querySelector('.btn-reset').addEventListener('click', () => {
+            // Don't do anything if the game hasn't started yet
+            if (gameController.started) gameController.reset();
+        });
+    },
+
     start() {
-        bindCardEvents();
-        bindResetEvent();
+        // Set a flag (helper for reset event)
+        this.started = true;
         // Animate cards from scale 0 to full
         this.deck.classList.toggle('reveal');
         timer.start();
@@ -32,7 +49,6 @@ const gameController = {
         this.matched = 0
         this.deckSetup();
         scoreController.resetScore();
-        bindCardEvents();
         timer.stop();
         timer.reset();
         timer.start();
@@ -378,29 +394,11 @@ const modal = {
 
 gameController.init();
 
-function bindCardEvents() {
-    document.querySelectorAll('.deck div').forEach(function(card) {
-        card.addEventListener('click', cardClicked);
-    });
-}
-
-function cardClicked(e) {
-    if (true === e.currentTarget.classList.contains('matched')) return;
-    gameController.openCard(e.currentTarget);
-}
-
 document.querySelector('.btn-start').addEventListener('click', function() {
     gameController.start();
     this.classList.toggle('started');
     this.setAttribute('disabled', '');
 });
-
-function bindResetEvent() {
-    document.querySelector('.btn-reset').addEventListener('click', function() {
-        gameController.reset();
-    });
-}
-
 
 // from https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function shuffle(array) {
