@@ -1,5 +1,3 @@
-const symbols = ['☀', '☂', '☏', '☘', '☮', '♥', '♫', '☺'];
-
 const gameController = {
     // Set the number of matches required to win.
     goal: 8,
@@ -10,7 +8,7 @@ const gameController = {
     // Array to track cards opened by the user
     openCards: [],
 
-    init: function() {
+    init() {
         // Create the deck
         this.deckSetup();
         // Set the move counter
@@ -21,7 +19,7 @@ const gameController = {
         modal.init();
     },
 
-    start: function() {
+    start() {
         bindCardEvents();
         bindResetEvent();
         // Animate cards from scale 0 to full
@@ -29,7 +27,7 @@ const gameController = {
         timer.start();
     },
 
-    reset: function() {
+    reset() {
         // Set match counter back to 0
         this.matched = 0
         this.deckSetup();
@@ -40,21 +38,24 @@ const gameController = {
         timer.start();
     },
 
-    deckSetup: function() {
+    deckSetup() {
+        const symbols = ['☀', '☂', '☏', '☘', '☮', '♥', '♫', '☺'];
         const fragment = document.createDocumentFragment();
         let cards = [];
 
-        symbols.forEach(function(symbol, index) {
+        // Create two cards for each symbol
+        symbols.forEach((symbol, index) => {
             const card = document.createElement('div');
             card.innerHTML = `<span>${symbol}</span>`;
             card.dataset.pairId = index;
 
             cards.push(card);
+            // Deep clone to preserve child nodes
             cards.push(card.cloneNode(true));
         });
 
         cards = shuffle(cards);
-        cards.forEach(function(card) {
+        cards.forEach((card) => {
              fragment.appendChild(card);
         });
 
@@ -62,7 +63,7 @@ const gameController = {
         this.deck.appendChild(fragment);
     },
 
-    openCard: function(card) {
+    openCard(card) {
         // Do nothing if the card is already open
         if (-1 !== this.openCards.indexOf(card)) return;
 
@@ -71,7 +72,7 @@ const gameController = {
         this.evaluate();
     },
 
-    evaluate: function() {
+    evaluate() {
         // Proceed only if there are 2 open cards
         if (2 !== this.openCards.length) return;
 
@@ -91,11 +92,11 @@ const gameController = {
         this.openCards = [];
     },
 
-    processMatch: function() {
+    processMatch() {
         // Increment match counter
         this.matched += 1;
 
-        this.openCards.forEach(function(card) {
+        this.openCards.forEach((card) => {
             // Wait for the open animation to finish before
             // adding the 'matched' class.
             setTimeout(() => {card.classList.toggle('matched');}, 500);
@@ -105,8 +106,8 @@ const gameController = {
         if (this.matched === this.goal) this.victory();
     },
 
-    processMiss: function() {
-        this.openCards.forEach(function(card) {
+    processMiss() {
+        this.openCards.forEach((card) => {
             // Wait for the 'open' animation to finish and add 'wrong' class
             setTimeout(() => {card.classList.toggle('wrong');}, 500);
             // Wait for the 'wrong' animation to finish and remove both classes.
@@ -117,7 +118,7 @@ const gameController = {
         });
     },
 
-    victory: function() {
+    victory() {
         // Show modal and stop the timer
         timer.stop();
         // Wait for animations to finish
