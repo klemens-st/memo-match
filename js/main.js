@@ -279,9 +279,9 @@ const leaderBoard = {
                 }
             }
             if (!inserted) this.scores.push(newEntry);
-            // Save changes to local storage
-            localStorage.setItem('leaderBoard', JSON.stringify(this.scores));
         }
+        // Save changes to local storage
+        localStorage.setItem('leaderBoard', JSON.stringify(this.scores));
         // Hide the form to allow only one submission.
         this.form.classList.toggle('disabled');
         // Finally, render the new list
@@ -323,7 +323,7 @@ const leaderBoard = {
         // Clear local storage
         localStorage.removeItem('leaderBoard');
         // Clear rendered list
-        this.list.innerHTML = '';
+        this.render();
     }
 }
 
