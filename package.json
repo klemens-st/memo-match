@@ -1,0 +1,21 @@
+{
+  "name": "memo-match",
+  "version": "1.0.0",
+  "description": "A simple animated memory matching game",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "memory",
+    "matching",
+    "game"
+  ],
+  "author": "Klemens Starybrat",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "grunt": "^1.0.2",
+    "grunt-contrib-concat": "^1.0.1"
+  }
+}
