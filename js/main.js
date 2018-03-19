@@ -121,7 +121,7 @@ const gameController = {
         // Show modal and stop the timer
         timer.stop();
         // Wait for animations to finish
-        setTimeout(() => {modal.open();}, 1000);
+        setTimeout(() => {modal.open();}, 2000);
     }
 };
 
