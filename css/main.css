@@ -261,3 +261,11 @@ tr:nth-of-type(odd) {
 @media screen and (min-width: 426px) {
   .scores {font-size: 1em;}
 }
+
+/* Footer */
+
+footer {
+  background-color: #1e4863;
+  color: white;
+  padding-left: 10px;
+}
