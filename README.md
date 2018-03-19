@@ -51,7 +51,7 @@ No production JavaScript libraries were used :)
 
 ## License
 
-This project is licensed under the GPL v3.0 License
+This project is licensed under the GPL v3.0 License. It is available [here](https://github.com/zymeth25/memo-match/blob/master/LICENSE)
 
 ## Acknowledgments
 
