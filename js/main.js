@@ -315,7 +315,7 @@ const leaderBoard = {
         const fragment = document.createDocumentFragment();
 
         let i = 1;
-        this.scores.forEach(function(entry) {
+        this.scores.forEach((entry) => {
             const {name, time, score} = entry;
             const row = document.createElement('tr');
             row.innerHTML = `<td>${i}.</td><td>${name}</td><td>${score}</td><td>${time}</td>`;
