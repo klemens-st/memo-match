@@ -15,12 +15,12 @@ const modal = {
 
     open() {
         this.render();
-        this.overlay.classList.toggle('show');
+        this.overlay.classList.toggle('disabled');
         this.toggleBlur();
     },
 
     close() {
-        this.overlay.classList.toggle('show');
+        this.overlay.classList.toggle('disabled');
         // Make sure leaderboard form is enabled (if available)
         if (leaderBoard.available){
             leaderBoard.form.classList.remove('disabled');
