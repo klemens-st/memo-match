@@ -232,7 +232,7 @@ const leaderBoard = {
     // Is 'no scores' message displayed?
     noScores: true,
 
-    init: function() {
+    init() {
         if (storageAvailable('localStorage')) {
             // Update availability
             this.available = true;
@@ -251,27 +251,25 @@ const leaderBoard = {
         }
     },
 
-    setEvents: function() {
-        this.form.addEventListener('submit', function(e) {
+    setEvents() {
+        this.form.addEventListener('submit', e => {
                 e.preventDefault();
                 const name = document.querySelector('input').value;
                 leaderBoard.insert(name);
             });
     },
 
-    insert: function(name) {
+    insert(name) {
         const time = new Date().toLocaleString();
         const score = scoreController.moves;
         const newEntry = {name, time, score};
+        let inserted = false;
 
-        if (0 === this.scores.length) {
-            this.scores.push(newEntry);
-        } else {
+        if (0 < this.scores.length) {
             // Loop over the array and insert the new entry as
             // soon as an equal or higher score is found. This ensures
             // uniformity of the leaderboard. If we are trying to insert
             // a score higher than any other one, push it to the end
-            let inserted = false;
             for (const entry of this.scores) {
                 if (entry.score >= newEntry.score) {
                     const position = this.scores.indexOf(entry);
@@ -280,7 +278,10 @@ const leaderBoard = {
                     break;
                 }
             }
-            if (!inserted) this.scores.push(newEntry);
+        }
+        // First or lowest entry
+        if (0 === this.scores.length || !inserted) {
+            this.scores.push(newEntry);
         }
         // Save changes to local storage
         localStorage.setItem('leaderBoard', JSON.stringify(this.scores));
@@ -290,7 +291,7 @@ const leaderBoard = {
         this.render();
     },
 
-    render: function() {
+    render() {
         this.toggleNoScores();
         // Do nothing if there are no entries
         if (0 === this.scores.length) return;
@@ -312,7 +313,7 @@ const leaderBoard = {
     },
 
     // Controls the display of 'no scores' message
-    toggleNoScores: function() {
+    toggleNoScores() {
         if (0 === this.scores.length && !this.noScores ||
             0 < this.scores.length && this.noScores) {
             this.noScores = !this.el.querySelector('.no-scores')
@@ -320,11 +321,12 @@ const leaderBoard = {
         }
     },
 
-    clear: function() {
+    clear() {
         this.scores = [];
         // Clear local storage
         localStorage.removeItem('leaderBoard');
         // Clear rendered list
+        this.list.innerHTML = ''
         this.render();
     }
 }
