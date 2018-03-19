@@ -218,7 +218,7 @@ label {
   visibility: hidden;
 }
 
-.blur {
+.blur > *:not(.overlay) {
   filter: blur(5px);
 }
 

@@ -337,7 +337,7 @@ const modal = {
     // Overlay containing the modal
     overlay: document.querySelector('.overlay'),
 
-    init: function() {
+    init() {
         // Set a close event on play again button
         this.el.querySelector('.again').addEventListener('click', () => {
             modal.close();
@@ -345,13 +345,13 @@ const modal = {
         });
     },
 
-    open: function() {
+    open() {
         this.render();
         this.overlay.classList.toggle('show');
         this.toggleBlur();
     },
 
-    close: function() {
+    close() {
         this.overlay.classList.toggle('show');
         // Make sure leaderboard form is enabled (if available)
         if (leaderBoard.available){
@@ -360,7 +360,7 @@ const modal = {
         this.toggleBlur();
     },
 
-    render: function() {
+    render() {
         const moves = this.el.querySelector('.moves');
         const stars = this.el.querySelector('.stars');
         const timeElapsed = this.el.querySelector('.timer');
@@ -370,10 +370,9 @@ const modal = {
         timeElapsed.textContent = timer.parse();
     },
 
-    toggleBlur: function() {
-        document.querySelectorAll('body > *:not(.overlay)').forEach(function(el) {
-            el.classList.toggle('blur');
-        });
+    // Apply blur effect behind the modal
+    toggleBlur() {
+        document.body.classList.toggle('blur');
     }
 }
 
