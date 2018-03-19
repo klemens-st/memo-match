@@ -7,10 +7,20 @@ module.exports = function(grunt) {
       options: {
         stripBanners: true,
         banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-                '<%= grunt.template.today("yyyy-mm-dd") %> */',
-    },
-      src: [],
-      dest: ''
+                '<%= grunt.template.today("yyyy-mm-dd") %> */\n',
+      },
+      dist: {
+        src: [
+          'js/utils.js',
+          'js/game-controller.js',
+          'js/score-controller.js',
+          'js/timer.js',
+          'js/leader-board.js',
+          'js/modal.js',
+          'js/main.js'
+        ],
+        dest: 'js/built/main.js'
+      }
     }
   });
 
