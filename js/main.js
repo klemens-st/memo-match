@@ -227,6 +227,8 @@ const leaderBoard = {
     // Other objects will check this property before
     // interacting with the leaderboard
     available: false,
+    // Is 'no scores' message displayed?
+    noScores: true,
 
     init: function() {
         if (storageAvailable('localStorage')) {
@@ -287,11 +289,9 @@ const leaderBoard = {
     },
 
     render: function() {
-        // Fallback if there are no entries
-        if (0 === this.scores.length) {
-            this.el.insertAdjacentHTML('beforeend', '<p>No entries yet</p>');
-            return;
-        }
+        this.toggleNoScores();
+        // Do nothing if there are no entries
+        if (0 === this.scores.length) return;
 
         const fragment = document.createDocumentFragment();
 
@@ -307,6 +307,15 @@ const leaderBoard = {
         this.list.innerHTML = '';
         this.list.appendChild(fragment);
         this.list.classList.toggle('hidden');
+    },
+
+    // Controls the display of 'no scores' message
+    toggleNoScores: function() {
+        if (0 === this.scores.length && !this.noScores ||
+            0 < this.scores.length && this.noScores) {
+            this.noScores = !this.el.querySelector('.no-scores')
+                            .classList.toggle('disabled');
+        }
     },
 
     clear: function() {
