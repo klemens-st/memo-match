@@ -175,7 +175,7 @@ label {
 }
 
 .modal {
-  padding: 0 10px;
+  padding: 20px;
   background-color: white;
   text-align: center;
   left: calc((100vw - 300px) / 2);
@@ -187,8 +187,12 @@ label {
   box-sizing: border-box;
 }
 
+.modal > h2 {
+  margin: 0 0 10px 0;
+}
+
 .save-score {
-  margin: 10px 0;
+  margin: 10px 0 0 0;
 }
 
 @media screen and (min-width: 600px) {
