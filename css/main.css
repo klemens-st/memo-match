@@ -258,6 +258,10 @@ tr:nth-of-type(odd) {
   margin: 10px;
 }
 
+.no-scores {
+  margin: 15px 10px;
+}
+
 @media screen and (min-width: 426px) {
   .scores {font-size: 1em;}
 }
