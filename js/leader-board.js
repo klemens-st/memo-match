@@ -115,7 +115,7 @@ const leaderBoard = {
         // Clear local storage
         localStorage.removeItem('leaderBoard');
         // Clear rendered list
-        this.list.innerHTML = ''
+        this.list.innerHTML = '';
         this.render();
     }
 }
