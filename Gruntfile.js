@@ -29,11 +29,17 @@ module.exports = function(grunt) {
           'js/built/main.min.js': ['js/built/main.js']
         }
       }
+    },
+
+    watch: {
+      files: ['js/*'],
+      tasks: ['concat', 'uglify'],
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify-es');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('default', ['concat', 'uglify']);
 };
