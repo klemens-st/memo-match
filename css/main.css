@@ -23,7 +23,7 @@ button:hover {
 }
 
 button:active {
-  background-color: green;
+  box-shadow: inset 2px 2px 8px 0px black;
 }
 
 /* Utility classes */
