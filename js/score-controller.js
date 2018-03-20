@@ -46,7 +46,7 @@ const scoreController = {
             `${filled} ${empty} ${empty}`,
             `${filled} ${filled} ${empty}`,
             `${filled} ${filled} ${filled}`
-        ]
+        ];
 
         this.stars.textContent = strings[this.rating];
     }
