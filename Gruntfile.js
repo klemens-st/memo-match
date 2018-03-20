@@ -21,11 +21,21 @@ module.exports = function(grunt) {
         ],
         dest: 'js/built/main.js'
       }
+    },
+
+    uglify: {
+      my_target: {
+        files: {
+          'js/built/main.min.js': ['js/built/main.js']
+        }
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify-es');
 
   grunt.registerTask('default', ['concat']);
+  grunt.registerTask('default', ['uglify']);
 
 };
