@@ -70,8 +70,7 @@ const gameController = {
     setEvents() {
         // Delegate events from deck to cards
         this.deck.addEventListener('click', e => {
-            if (e.target.nodeName === 'DIV' &&
-                    false === e.target.classList.contains('matched')) {
+            if (e.target.nodeName === 'DIV') {
                 gameController.openCard(e.target);
             }
         });
