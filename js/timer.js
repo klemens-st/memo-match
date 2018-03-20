@@ -7,15 +7,17 @@ const timer = {
 
     // Parse raw time and return display string
     parse() {
-        let minutes = Math.floor(this.current / 60);
+        let hours = Math.floor(this.current / 3600);
+        let minutes = Math.floor(this.current / 60 % 60);
         let seconds = this.current % 60;
 
         // Add leading '0' if the number is < 10
+        if (hours < 10) hours = '0' + hours;
         if (minutes < 10) minutes = '0' + minutes;
         if (seconds < 10) seconds = '0' + seconds;
 
         // Format output string
-        return `${minutes}:${seconds}`;
+        return `${hours}:${minutes}:${seconds}`;
     },
 
     // Start the timer and run it

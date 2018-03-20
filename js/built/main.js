@@ -1,4 +1,4 @@
-/*! memo-match - v1.0.0 - 2018-03-19 */
+/*! memo-match - v1.0.0 - 2018-03-20 */
 // from https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
@@ -247,15 +247,17 @@ const timer = {
 
     // Parse raw time and return display string
     parse() {
-        let minutes = Math.floor(this.current / 60);
+        let hours = Math.floor(this.current / 3600);
+        let minutes = Math.floor(this.current / 60 % 60);
         let seconds = this.current % 60;
 
         // Add leading '0' if the number is < 10
+        if (hours < 10) hours = '0' + hours;
         if (minutes < 10) minutes = '0' + minutes;
         if (seconds < 10) seconds = '0' + seconds;
 
         // Format output string
-        return `${minutes}:${seconds}`;
+        return `${hours}:${minutes}:${seconds}`;
     },
 
     // Start the timer and run it
@@ -394,7 +396,7 @@ const leaderBoard = {
         // Clear local storage
         localStorage.removeItem('leaderBoard');
         // Clear rendered list
-        this.list.innerHTML = ''
+        this.list.innerHTML = '';
         this.render();
     }
 }
