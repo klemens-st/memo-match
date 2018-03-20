@@ -411,6 +411,10 @@ const modal = {
             modal.close();
             gameController.reset();
         });
+        // Set modal close button handler
+        this.el.querySelector('.close').addEventListener('click',() => {
+            modal.close();
+        });
     },
 
     open() {

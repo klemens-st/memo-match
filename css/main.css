@@ -172,9 +172,26 @@ header {
 
 /* Modal styles */
 
+nav {
+  text-align: right;
+  border-bottom: 1px solid #d4d4d4;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+}
+
 label {
   display: block;
   margin: 10px 0;
+}
+
+.close {
+  cursor: pointer;
+  padding: 15px 20px;
+  transition: color 0.5s;
+}
+
+.close:hover {
+  color: #5cc3ff;
 }
 
 .modal,
