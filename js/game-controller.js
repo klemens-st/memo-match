@@ -26,8 +26,11 @@ const gameController = {
 
     setEvents() {
         // Delegate events from deck to cards
+        // Exclude spans with symbols and the deck element itself
         this.deck.addEventListener('click', e => {
-            if (e.target.nodeName === 'DIV') {
+            if (e.target.nodeName === 'DIV' &&
+                    false === e.target.classList.contains('open') &&
+                    e.target !== e.currentTarget) {
                 gameController.openCard(e.target);
             }
         });
@@ -82,9 +85,6 @@ const gameController = {
     },
 
     openCard(card) {
-        // Do nothing if the card is already open
-        if (-1 !== this.openCards.indexOf(card)) return;
-
         this.openCards.push(card);
         card.classList.toggle('open');
         this.evaluate();

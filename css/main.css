@@ -98,14 +98,12 @@ header {
   grid-gap: 10px;
   justify-items: stretch;
   align-items: stretch;
-  pointer-events: none;
 }
 
 .deck div {
   background-color: #fc8307;
   text-align: center;
   border-radius: 10px;
-  pointer-events: auto;
   /* Cards are invisible until start button is clicked */
   transform: rotateY(180deg) scale(0,0);
   transition: box-shadow 0.3s,
@@ -132,7 +130,6 @@ header {
 .deck > .open {
   background-color: blue;
   transform: rotateY(0deg);
-  pointer-events: none;
 }
 
 .open span {
