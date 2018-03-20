@@ -43,6 +43,7 @@ const modal = {
 
         moves.textContent = scoreController.moves;
         stars.textContent = scoreController.rating;
+        stars.textContent += 1 === scoreController.rating ? ' star' : ' stars';
         timeElapsed.textContent = timer.parse();
     },
 
