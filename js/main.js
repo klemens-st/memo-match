@@ -2,7 +2,11 @@
 gameController.init();
 
 document.querySelector('.btn-start').addEventListener('click', function() {
-    gameController.start();
+    // Do regular start if this is the first game
+    if (!gameController.started) gameController.start();
+    // Otherwise perform a reset
+    else gameController.reset();
+
     this.classList.toggle('started');
-    this.setAttribute('disabled', '');
+    this.disabled = true;
 });

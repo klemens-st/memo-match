@@ -38,6 +38,11 @@ const gameController = {
         document.querySelector('.btn-reset').addEventListener('click', () => {
             // Don't do anything if the game hasn't started yet
             if (gameController.started) gameController.reset();
+            // Make sure the start button is gone in case the modal
+            // brought it back up
+            const start = document.querySelector('.btn-start');
+            start.classList.toggle('started');
+            start.disabled = true;
         });
     },
 

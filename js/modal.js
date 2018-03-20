@@ -12,8 +12,12 @@ const modal = {
             gameController.reset();
         });
         // Set modal close button handler
-        this.el.querySelector('.close').addEventListener('click',() => {
+        this.el.querySelector('.close').addEventListener('click', () => {
             modal.close();
+            // Bring the start button back up
+            const start = document.querySelector('.btn-start');
+            start.classList.toggle('started');
+            start.disabled = false;
         });
     },
 
